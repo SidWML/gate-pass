@@ -52,11 +52,11 @@ import {
     </DropdownMenuItem>
   );
 
-export default function Dropdown({ menuLabel, menuItems,buttonName }) {
+export default function Dropdown({ menuLabel, menuItems,buttonName,classess }) {
   return (
     <DropdownMenu>
     <DropdownMenuTrigger asChild>
-      <Button className='p-2' variant="outline">{buttonName}</Button>
+      <Button className={`p-2 ${classess}`} variant="outline">{buttonName}</Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-56">
       <DropdownMenuLabel>{menuLabel}</DropdownMenuLabel>

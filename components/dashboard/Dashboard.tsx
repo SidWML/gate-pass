@@ -90,11 +90,9 @@ export default function Dashboard() {
   );
 
   const QuickAction = ({ label, href, color, icon }) => (
-    <Link href={``} className={`rounded-lg text-[14px] border border-black/10 text-black font-semibold ${color} hover:bg-opacity-75 p-2 flex items-center gap-2 hover:bg-blue-100 `}>
-      <span className="">
-        {icon}
-      </span>
-        <span>{label}</span>
+    <Link href={``} className={`rounded-lg text-[14px] border border-black/10 text-black font-semibold ${color} hover:bg-opacity-75 p-2 flex flex-col text-center items-center gap-2 hover:bg-blue-100 `}>
+      <span className=" w-[50px] h-[50px] flex items-center justify-center">{icon}</span>
+      <span>{label}</span>
     </Link>
   );
 
@@ -105,30 +103,201 @@ export default function Dashboard() {
     const options = { hour12: true, hour: "numeric", minute: "numeric", second: "numeric" };
     const formattedTimeString = currentTime.toLocaleTimeString("en-US", options);
     setFormattedTime(formattedTimeString);
-  }, []);
+  }, [formattedTime]);
 
+  const visitorsData = {
+    columns: [
+      {
+        field: "Name",
+        header: "Name",
+        width: "w-1/10 min-w-[200px]",
+      },
+      {
+        field: "ContactNo",
+        header: "Contact No",
+        width: "w-1/10 min-w-[200px]",
+      },
+      {
+        field: "InTime",
+        header: "In Time",
+        width: "w-1/10",
+      },
+      {
+        field: "OutTime",
+        header: "Out Time",
+        width: "w-1/10",
+      },
+      {
+        field: "SecurityBadge",
+        header: "Security Badge",
+        width: "w-1/10",
+      },
+      {
+        field: "VehicleID",
+        header: "Vehicle ID",
+        width: "w-1/10",
+      },
+      {
+        field: "SecurityCheck",
+        header: "Security Check",
+        width: "w-1/10",
+      },
+      // New fields added to columns
+      {
+        field: "PurposeOfVisit",
+        header: "Purpose of Visit",
+        width: "w-1/10",
+      },
+      {
+        field: "VisitingFrom",
+        header: "Visiting From",
+        width: "w-1/10",
+      },
+      {
+        field: "EscortedBy",
+        header: "Escorted By",
+        width: "w-1/10",
+      },
+    ],
+    rows: [
+      {
+        Name: { value: "John Doe" },
+        ContactNo: { value: "123-456-7890", width: 3 },
+        InTime: { value: "9:00 AM", width: 2 },
+        OutTime: { value: "5:00 PM", width: 2 },
+        SecurityBadge: { value: "ABC123", width: "w-1/4" },
+        VehicleID: { value: "V001", width: "w-1/4" },
+        SecurityCheck: { value: "Passed", width: "w-1/4" },
+        PurposeOfVisit: { value: "Meeting", width: "w-1/4" },
+        VisitingFrom: { value: "ABC Company", width: "w-1/4" },
+        EscortedBy: { value: "Security Officer", width: "w-1/4" },
+      },
+      // Add more rows as needed
+    ],
+  };
 
-  const topVisitorsData = [
-    { 'No of Visit': 5, 'Visitor Name': 'John Doe', 'Contact No': '123-456-7890', 'In Time':'9:00', 'Out Time':'-' },
-  ];
-  
-  const contractorWorkerData = [
-    { 'Worker Code': 'W001', 'Worker Name': 'Alice', 'IN Time': '10:00 AM', 'Out Time': '05:00 PM' },
-  ];
-  
-  const topVisitorsColumns = ['No of Visit', 'Visitor Name', 'Contact No', 'In Time', 'Out Time'].map((field) => ({
-    field,
-    header: field,
-  }));
-  
-  const contractorWorkerColumns = ['Worker Code', 'Worker Name', 'IN Time', 'Out Time'].map((field) => ({
-    field,
-    header: field,
-  }));
+  // Vehicles Data
+  const vehiclesData = {
+    columns: [
+      {
+        field: "VehicleID",
+        header: "Vehicle ID",
+        width: "w-[15%]",
+      },
+      {
+        field: "RegistrationNumber",
+        header: "Registration Number",
+        width: "w-[40%]",
+      },
+      // New fields added to columns
+      {
+        field: "VehicleType",
+        header: "Vehicle Type",
+        width: "w-[30%]",
+      },
+      {
+        field: "Color",
+        header: "Color",
+        width: "w-[15%]",
+      },
+    ],
+    rows: [
+      {
+        VehicleID: { value: "V001", width: "w-1/2" },
+        RegistrationNumber: { value: "ABC 123", width: "w-1/2" },
+        VehicleType: { value: "Sedan", width: "w-1/2" },
+        Color: { value: "Black", width: "w-1/2" },
+      },
+      // Add more vehicle data as needed
+    ],
+  };
 
+  // Materials Data
+  const materialsData = {
+    columns: [
+      {
+        field: "MaterialID",
+        header: "Material ID",
+        width: "w-[15%]",
+      },
+      {
+        field: "MaterialName",
+        header: "Material Name",
+        width: "w-[40%]",
+      },
+      // New fields added to columns
+      {
+        field: "MaterialQuantity",
+        header: "Material Quantity",
+        width: "w-[15%]",
+      },
+      {
+        field: "Supplier",
+        header: "Supplier",
+        width: "w-[30%]",
+      },
+    ],
+    rows: [
+      {
+        MaterialID: { value: "M001", width: "w-1/2" },
+        MaterialName: { value: "Steel", width: "w-1/2" },
+        MaterialQuantity: { value: "100 units", width: "w-1/2" },
+        Supplier: { value: "ABC Suppliers", width: "w-1/2" },
+      },
+      // Add more material data as needed
+    ],
+  };
+
+  // Contractors Data
+  const employeesData = {
+    columns: [
+      {
+        field: "EmployeeCode",
+        header: "Employee Code",
+        width: "w-[10%]",
+      },
+      {
+        field: "EmployeeName",
+        header: "Employee Name",
+        width: "w-[30%]",
+      },
+      {
+        field: "InTime",
+        header: "In Time",
+        width: "w-[15%]",
+      },
+      {
+        field: "OutTime",
+        header: "Out Time",
+        width: "w-[15%]",
+      },
+      // New fields added to columns for employees
+      {
+        field: "Department",
+        header: "Department",
+        width: "w-[15%]",
+      },
+      {
+        field: "Position",
+        header: "Position",
+        width: "w-[15%]",
+      },
+    ],
+    rows: [
+      {
+        EmployeeCode: { value: "E001", width: "w-1/4" },
+        EmployeeName: { value: "John Doe", width: "w-1/4" },
+        InTime: { value: "9:00 AM", width: "w-1/4" },
+        OutTime: { value: "6:00 PM", width: "w-1/4" },
+        Department: { value: "IT", width: "w-1/4" },
+        Position: { value: "Software Engineer", width: "w-1/4" },
+      },
+      // Add more employee data as needed
+    ],
+  };
   return (
     <div className="flex flex-col  w-full h-full">
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 text-white text-lg font-bold ">
+      <div className="flex items-center justify-between  text-lg font-bold ">
         <span>Gate Pass Dashboard</span>
         <div className=" flex items-center gap-4">
           <span>{new Date().toLocaleDateString()}</span>
@@ -144,9 +313,9 @@ export default function Dashboard() {
       </div>
 
       <div className=" py-4">
-        <h2 className="text-xl font-semibold ">Quick Actions</h2>
-        <div className=" grid grid-cols-5 mt-6 gap-4">
-          <QuickAction label="Approve Pending Pass" href="/gatepass/pending" color="blue" icon={<Check />} />
+        <h2 className="text-xl font-semibold pl-2 ">Quick Actions</h2>
+        <div className=" grid grid-cols-6  mt-6 gap-4">
+          {/* <QuickAction label="Approve Pending Pass" href="/gatepass/pending" color="blue" icon={<Check />} /> */}
           <QuickAction label="Issue Visitor Pass" href="/gatepass/new/visitor" color="green" icon={<UserPlus />} />
           <QuickAction label="View Recent Pass History" href="/gatepass/history" color="gray" icon={<Clock />} />
           <QuickAction label="Manage Security Personnel" href="/security/personnel" color="purple" icon={<Shield />} />
@@ -157,7 +326,7 @@ export default function Dashboard() {
       </div>
 
       <div className=" py-4">
-        <h2 className="text-xl font-semibold ">Gate Pass Activity</h2>
+        <h2 className="text-xl font-semibold pl-2 ">Gate Pass Activity</h2>
         <div className=" grid grid-cols-5 gap-5 mt-8">
           <div className=" flex flex-col justify-between col-span-1 border border-black/10 rounded-[5px] p-4">
             <Doughnut
@@ -184,18 +353,13 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className=" py-4 w-full">
-        <h2 className="text-xl font-semibold ">Visitors</h2>
-        <div className=" mt-6">
-        <Table columns={topVisitorsColumns} data={topVisitorsData} />
-        </div>
-        </div>
-        <div className=" py-4 w-full">
-        <h2 className="text-xl font-semibold ">Visitors</h2>
-        <div className=" mt-6">
-        <Table columns={contractorWorkerColumns} data={contractorWorkerData} />
-        </div>
-        </div>
+
+      <div className=" space-y-8">
+        <Table title={`Employees`} data={employeesData} />
+        <Table title={`Visitors`} data={visitorsData} />
+        <Table title={`Materials`} data={materialsData} />
+        <Table title={`Vehicles`} data={vehiclesData} />
+      </div>
     </div>
   );
 }

@@ -18,10 +18,10 @@ export default function Sidebar() {
       icon: <Ticket className="w-5 h-5" />,
       bgColor: "bg-blue-500",
       childrens: [
-        { id: 1, link: "IN Gatepass", href: "in-gatepass" },
-        { id: 2, link: "Out Gatepass", href: "out-gatepass" },
-        { id: 3, link: "Pre Approved Gate In", href: "in-gatepass" },
-        { id: 4, link: "Gate Settings", href: "in-gatepass" },
+        { id: 1, link: "Incoming Gatepass", href: "/dashboard/in-gatepass" },
+        { id: 2, link: "Outgoing Gatepass", href: "/dashboard/out-gatepass" },
+        { id: 3, link: "Pre Approved Gate In", href: "/dashboard/pre-approved-gatepass" },
+        { id: 4, link: "Gate Settings", href: "/dashboard/gate-settings" },
       ],
     },
     {
@@ -138,26 +138,22 @@ export default function Sidebar() {
 
   return (
     <div className=" bg-[#f8f7f6] w-full h-full">
-      <div className=" py-4 px-5">
-        <h1 className=" flex items-center gap-1 font-bold text-[18px] leading-[24px]">
-          <Fingerprint className="w-6 h-6 text-blue-500" /> TracKpass
-        </h1>
-      </div>
       <div className=" p-4">
-        <Link className="rounded-[5px] flex items-center space-x-3 group p-2 hover:bg-white" href="">
-          <span className="  text-gray-200 group-hover:text-white bg-black p-1 w-[25px] h-[25px] rounded-[5px] flex items-center justify-center  ">
+        <Link className="rounded-[5px] flex items-center space-x-3 group p-2 hover:bg-white" href="/dashboard">
+          <span className=" text-sidebar-icon-color group-hover:text-black  p-1 w-[25px] h-[25px] rounded-[5px] flex items-center justify-center  ">
             {" "}
             <Layout className=" w-5 h-5 " />
           </span>
-          <span className=" text-gray-600 group-hover:text-black text-[15px] font-medium">Dashboard</span>
+          <span className=" text-gray-600 group-hover:text-black text-[15px] font-semibold">Dashboard</span>
         </Link>
         {sidebar &&
           sidebar.map((links, index) => (
             <Accordion key={index} type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger onClick={() => setActiveModule(index)} className=" p-2 hover:bg-white w-full rounded-[5px]">
-                  <div className=" flex items-center space-x-3 group"><span className={` p-1 text-gray-200 group-hover:text-white ${links.bgColor} w-[25px] h-[25px] rounded-[5px] flex items-center justify-center  `}>{links.icon}</span>
-                  <span className=" text-gray-600 group-hover:text-black text-[15px] font-medium">{links.link}</span></div>
+                <AccordionTrigger onClick={() => setActiveModule(index)} className=" p-2 hover:bg-white w-full rounded-[5px] group">
+                  <div className=" flex items-center space-x-3 group">
+                    <span className={` p- text-sidebar-icon-color  group-hover:text-black  w-[25px] h-[25px] rounded-[5px] flex items-center justify-center  `}>{links.icon}</span>
+                  <span className=" text-gray-600 group-hover:text-black text-[15px] font-semibold">{links.link}</span></div>
                 </AccordionTrigger>
                 <AccordionContent className={ ` flex-col flex `}>
                   {links.childrens &&

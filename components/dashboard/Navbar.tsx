@@ -1,3 +1,4 @@
+"use client"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,10 +13,10 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import Dropdown from '@/components/dashboard/reusables/Dropdown'
-import { Users, UserPlus, Mail, MessageSquare, PlusCircle, Plus, Github, LifeBuoy, Cloud, LogOut, Keyboard, CreditCard, Settings, Bell,User, Search } from "lucide-react";
+import { Users, UserPlus, Mail, MessageSquare, PlusCircle, Plus, Github, LifeBuoy, Cloud, LogOut, Keyboard, CreditCard, Settings, Bell,User, Search, Fingerprint } from "lucide-react";
 import { Input } from "../ui/input";
 
 
@@ -93,17 +94,27 @@ const notifications = [
     time: "1 month ago",
   },
 ];
+
+
 export default function Navbar() {
+  
+
+
   return (
-    <div className="w-full py-2 px-4 border-b flex items-center gap-3" >
-      <div className=" relative w-[60%] ml-auto">
-        <Input className="px-10 outline-none  " />
+    <div className="w-full px-4 h-[7vh] sticky top-0 right-0 left-0 bg-gray-800 text-white border-b flex items-center gap-3" >
+            <div className=" py-4 px-5">
+        <h1 className=" flex items-center gap-1 font-bold text-[18px] leading-[24px]">
+          <Fingerprint className="w-6 h-6 text-blue-500" /> GateSwift
+        </h1>
+      </div>
+      <div className=" relative w-[40%] ml-auto">
+        <Input className="px-10 outline-none bg-transparent text-white border-gray-500  " />
         <Search className=" absolute top-[50%] left-[10px] -translate-y-1/2 text-sidebar-icon-color cursor-none opacity-30  " />
       </div>
        <div className="  flex items-center gap-3">
        <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className=" outline-none " variant="outline" size={"icon"}>
+          <Button className=" outline-none bg-transparent border-gray-500" variant="outline" size={"icon"}>
             <Bell className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -119,7 +130,7 @@ export default function Navbar() {
       </DropdownMenuGroup>
     </DropdownMenuContent>
       </DropdownMenu>
-      <Dropdown menuItems={menuItems} menuLabel={"My Account"} buttonName={(<div className=" flex items-center gap-2"><div className="w-[25px] h-[25px] flex items-center justify-center bg-teal-500 text-white rounded-[5px]">SK </div> Sajid Khan</div> )} />
+      <Dropdown classess={` bg-transparent border-gray-500`} menuItems={menuItems} menuLabel={"My Account"} buttonName={(<div className=" flex items-center gap-2"><div className="w-[25px] h-[25px] flex items-center justify-center bg-teal-500 text-white rounded-[5px]">SK </div> Sajid Khan</div> )} />
        </div>
     </div>
   )
